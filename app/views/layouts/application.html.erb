@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <header class="navbar navbar-default" role="navigation">
     <div class="container">
@@ -9,20 +8,29 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <%= link_to 'Twitterへログイン', '/auth/twitter' %>
-          </li>
+          <% if logged_in? %>
+              <li><%= link_to 'ログアウト', '/logout' %></li>
+          <% else %>
+              <li><%= link_to 'Twitterでログイン', '/auth/twitter' %></li>
+          <% end %>
         </ul>
       </div>
     </div>
   </header>
   <title>AwesomeEvents</title>
   <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
+  <div class='container'>
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+  </div>
   <%= yield %>
 </body>
 
