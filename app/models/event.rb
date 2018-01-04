@@ -1,6 +1,4 @@
 class Event < ApplicationRecord
-  belongs_to :user
-  
   validates :name, presence: true
   validates :place, presence: true
   validates :start_time, presence: true
@@ -9,7 +7,7 @@ class Event < ApplicationRecord
   validate :start_time_should_be_before_end_time
 
   private
-  
+
   def start_time_should_be_before_end_time
     return unless start_time && end_time
     if start_time > end_time

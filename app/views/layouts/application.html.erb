@@ -9,6 +9,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
+              <li><%= link_to 'イベント作成', '/events' %></li>
               <li><%= link_to 'ログアウト', '/logout' %></li>
           <% else %>
               <li><%= link_to 'Twitterでログイン', '/auth/twitter' %></li>
@@ -25,10 +26,8 @@
 
 <body>
   <div class='container'>
-    <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <%= flash[:notice] %>
-      </div>
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-<%= type %>"><%= msg %></div>
     <% end %>
   </div>
   <%= yield %>
