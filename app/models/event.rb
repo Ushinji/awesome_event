@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  belongs_to :user, optional: true
+
   validates :name, presence: true
   validates :place, presence: true
   validates :start_time, presence: true
