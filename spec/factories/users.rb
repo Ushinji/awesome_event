@@ -1,6 +1,10 @@
 FactoryBot.define do
+  sequence :uid do |n|
+    "#{n}"
+  end
+
   factory :user do
-    provider "twitter"
-    uid "123"
+    provider 'twitter'
+    uid { generate(:uid) }
   end
 end
