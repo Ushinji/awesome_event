@@ -36,14 +36,14 @@ describe EventsController do
         valid_params
       end
 
-      it 'レスポンスが302であること' do
+      it 'レスポンスのHTTPステータスが200/OKであること' do
+        expect(response).to have_http_status :ok
         post 'create', { params: valid_params }
-        expect(response.status).to eq 302
       end
 
-      it 'root_pathへリダイレクトされること' do
+      it '作成したページの詳細画面が表示されること' do
         post 'create', { params: valid_params }
-        expect(response).to redirect_to root_path
+        expect(response).to render_template :show
       end
 
       it 'Eventテーブルの件数が1件増えること' do

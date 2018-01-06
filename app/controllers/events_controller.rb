@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
     if @event.save
       flash[:success] = 'イベントを作成しました'
-      redirect_to root_path
+      render 'show'
     else
       render 'new'
     end
