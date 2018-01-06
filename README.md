@@ -11,6 +11,11 @@ Things you may want to cover:
 
 * Configuration
 
+| Name | Property |
+----|---- 
+| DB_USERNAME | <<YOUR_USERNAME>> |
+| DB_PASSWORD | <<YOUR_PASSWORD>> |
+
 * Database creation
 
 * Database initialization
