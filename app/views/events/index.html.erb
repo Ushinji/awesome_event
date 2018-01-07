@@ -1,0 +1,17 @@
+<h1>イベント一覧</h1>
+
+<%= will_paginate %>
+  <div class="list-group">
+    <% @events.each do |event| %>
+      <%= link_to("/events/#{event.id}", class: 'list-group-item') do %>
+        <h4 class="list-group-item-heading">
+          <%= event.name %>
+        </h4>
+        <p class="list-group-item-text">
+          <%= event.content %>
+        </p>
+      <% end %>
+  <% end %>
+<%= will_paginate %>
+
+</div>

@@ -16,7 +16,11 @@ class EventsController < ApplicationController
   end
 
   def show
-    return @event = Event.find(params[:id])
+    @event = Event.find(params[:id])
+  end
+
+  def index
+    @events = Event.paginate(page: params[:page])
   end
 
   private
