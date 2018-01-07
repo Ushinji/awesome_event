@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105052414) do
+ActiveRecord::Schema.define(version: 20180107100710) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id", null: false
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20180105052414) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "participations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id", "user_id"], name: "index_participations_on_event_id_and_user_id", unique: true
+    t.index ["event_id"], name: "index_participations_on_event_id"
+    t.index ["user_id", "event_id"], name: "index_participations_on_user_id_and_event_id", unique: true
+    t.index ["user_id"], name: "index_participations_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "provider", null: false
     t.string "uid", null: false
@@ -35,4 +47,6 @@ ActiveRecord::Schema.define(version: 20180105052414) do
   end
 
   add_foreign_key "events", "users"
+  add_foreign_key "participations", "events"
+  add_foreign_key "participations", "users"
 end
