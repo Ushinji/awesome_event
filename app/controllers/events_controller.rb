@@ -23,6 +23,21 @@ class EventsController < ApplicationController
     @events = Event.paginate(page: params[:page])
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = current_user.events.find(params[:id])
+    if @event.update(event_params)
+      flash[:success] = 'イベントを編集を行いました。'
+      render 'show'
+    else
+      flash[:success] = 'イベントを作成に失敗しました'
+      render 'edit'
+    end
+  end
+
   private
 
   def event_params
