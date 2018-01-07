@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :user, optional: true
+  has_many :participations
 
   validates :name, presence: true
   validates :place, presence: true

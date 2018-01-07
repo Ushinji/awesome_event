@@ -50,8 +50,10 @@
   </div>
   <div class="col-md-2">
     <% if @event.created_by?(current_user) %>
-      <%= link_to 'イベント編集', "/events/#{@event.id}/edit", class: 'btn btn-primary btn-lg btn-block' %>
-        <%= link_to 'イベント削除', "/events/#{@event.id}", method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-lg btn-block' %>
-      <% end %>
+      <%= link_to 'イベントを編集', "/events/#{@event.id}/edit", class: 'btn btn-primary btn-lg btn-block' %>
+      <%= link_to 'イベントを削除', "/events/#{@event.id}", method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-lg btn-block' %>
+    <% else %>
+      <%= link_to 'イベントに参加', "/events/#{@event.id}/join", method: :post, class: 'btn btn-primary btn-lg btn-block' %>
+    <% end %>
   </div>
 </div>
