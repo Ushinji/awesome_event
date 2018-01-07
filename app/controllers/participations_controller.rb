@@ -12,4 +12,15 @@ class ParticipationsController < ApplicationController
     redirect_to "/events/#{event.id}"
   end
 
+  def destroy
+    event = Event.find(params[:id])
+    participation = event.participations.find_by(user_id: current_user.id)
+    if participation.delete
+      flash[:success] = '参加をキャンセルしました'
+    else
+      flash[:danger] = '参加にキャンセルに失敗しました'
+    end
+    redirect_to "/events/#{event.id}"
+  end
+
 end

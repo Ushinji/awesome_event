@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :events
   
   get '/users/:id', to: 'users#show'
+
   post '/events/:id/join/', to: 'participations#create'
+  delete '/events/:id/cancel/', to: 'participations#destroy'
 end

@@ -14,6 +14,10 @@ class Event < ApplicationRecord
     user_id == user.id
   end
 
+  def joined?(user)
+    self.participations.find_by(user_id: user.id) != nil
+  end
+
   private
 
   def start_time_should_be_before_end_time
