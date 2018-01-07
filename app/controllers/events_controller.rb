@@ -33,8 +33,19 @@ class EventsController < ApplicationController
       flash[:success] = 'イベントを編集を行いました。'
       render 'show'
     else
-      flash[:success] = 'イベントを作成に失敗しました'
+      flash[:danger] = 'イベントを編集に失敗しました'
       render 'edit'
+    end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    if @event.destroy
+      flash[:success] = 'イベント削除しました。'
+      redirect_to root_path
+    else
+      flash[:danger] = 'イベント削除に失敗しました'
+      render 'show'
     end
   end
 
