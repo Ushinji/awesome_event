@@ -1,6 +1,6 @@
 <h1>イベント一覧</h1>
 
-<%= will_paginate %>
+<%= will_paginate :renderer => BootstrapPagination::Rails %>
   <div class="list-group">
     <% @events.each do |event| %>
       <%= link_to("/events/#{event.id}", class: 'list-group-item') do %>
@@ -11,7 +11,6 @@
           <%= event.content %>
         </p>
       <% end %>
-  <% end %>
-<%= will_paginate %>
-
-</div>
+    <% end %>
+  </div>
+<%= will_paginate :renderer => BootstrapPagination::Rails %>
