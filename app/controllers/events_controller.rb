@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
     if @event.save
-      flash[:success] = 'イベントを作成しました'
+      flash.now[:success] = 'イベントを作成しました'
       render 'show'
     else
       render 'new'
@@ -30,10 +30,10 @@ class EventsController < ApplicationController
   def update
     @event = current_user.events.find(params[:id])
     if @event.update(event_params)
-      flash[:success] = 'イベントを編集を行いました。'
+      flash.now[:success] = 'イベントを編集を行いました。'
       render 'show'
     else
-      flash[:danger] = 'イベントを編集に失敗しました'
+      flash.now[:danger] = 'イベントを編集に失敗しました'
       render 'edit'
     end
   end
@@ -44,7 +44,7 @@ class EventsController < ApplicationController
       flash[:success] = 'イベント削除しました。'
       redirect_to root_path
     else
-      flash[:danger] = 'イベント削除に失敗しました'
+      flash.now[:danger] = 'イベント削除に失敗しました'
       render 'show'
     end
   end
