@@ -42,7 +42,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if @event.destroy
       flash[:success] = 'イベント削除しました。'
-      redirect_to root_path
+      redirect_to "/events"
     else
       flash.now[:danger] = 'イベント削除に失敗しました'
       render 'show'

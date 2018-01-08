@@ -15,9 +15,9 @@ describe EventsController do
         expect(response).to have_http_status :found
       end
 
-      it 'ルートページへリダイレクトすること' do
+      it 'イベント一覧ページへリダイレクトすること' do
         post :destroy, params: { id: @event }
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to "/events"
       end
 
       it 'Event削除と共に、関連するParticipationテーブルのレコードも削除されること' do
