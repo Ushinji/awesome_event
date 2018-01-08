@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :user, optional: true
-  has_many :participations
+  has_many :participations, foreign_key: "event_id", dependent: :destroy
 
   validates :name, presence: true
   validates :place, presence: true
